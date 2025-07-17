@@ -1,0 +1,5 @@
+number = float(input("Student Grade:"))
+print(type(number))
+number = int(number)
+print(type(number))
+print(number)
