@@ -1,0 +1,7 @@
+id = int(input( "Student ID:"))
+name = input("Student name:")
+age = int(input("Student age:"))
+print ("\n\n")
+print("Id is : ",id)
+print("Name is : ",name)
+print("Age is : ",age)
