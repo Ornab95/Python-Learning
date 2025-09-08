@@ -1,68 +1,69 @@
 import pandas as pd
-# data = {
-#     'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
-#     'Age': [25, 30, 35, 28, 32],
-#     # "EmpId": [101, None, 103, 104, 105],
-#     'Salary': [70000, 80000, 90000, 75000, 82000],
-#     'City': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Seattle'],
-#     'Performance': [85, 90, 95, 88, 92]
-# }
-# df = pd.DataFrame(data)
-# # print("Original DataFrame:")
-# # print(df)
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Age': [25, 30, 35, 28, 32],
+    "EmpId": [101, None, 103, 104, 105],
+    'Salary': [70000, 80000, 90000, 75000, 82000],
+    'City': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Seattle'],
+    'Performance': [85, 90, 95, 88, 92]
+}
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
 
 # # Add a new column 'Experience' based on 'Age'
-# df["Experience"] = df["Age"] - 24
-# print("\nDataFrame after adding 'Experience' column:")
-# # print(df)
-# # using insert method
-# df.insert(0, "Employee ID", [1, 2, 3, 4, 5])
-# print(df)
+df["Experience"] = df["Age"] - 24
+print("\nDataFrame after adding 'Experience' column:")
+print(df)
+# using insert method
+df.insert(0, "Employee ID", [1, 2, 3, 4, 5])
+print(df)
 
 # #Updating Values
-# df.loc[0, "Salary"] = 72000
-# print(df)
+df.loc[0, "Salary"] = 72000
+print(df)
 
 # #Updating value (Increasing all value by 10% )
-# df["Salary"] = df["Salary"] * 1.1
-# print("\nDataFrame after increasing 'Salary' by 10  %:")
-# print(df)
+df["Salary"] = df["Salary"] * 1.1
+print("\nDataFrame after increasing 'Salary' by 10  %:")
+print(df)
 
 # # Drop a Single Column
-# df.drop("Experience", axis=1, inplace=True)
-# print("\nDataFrame after dropping 'Experience' column:")
-# print(df)
+df.drop("Experience", axis=1, inplace=True)
+print("\nDataFrame after dropping 'Experience' column:")
+print(df)
 
 # # Drop Multiple Columns
-# df.drop(["City", "Performance"], axis=1, inplace=True)
-# print("\nDataFrame after dropping 'City' and 'Performance' columns:")
-# print(df)
+df.drop(["City", "Performance"], axis=1, inplace=True)
+print("\nDataFrame after dropping 'City' and 'Performance' columns:")
+print(df)
 
 #NaN Values
-# print(df.isnull().sum()) 
-
-
+print(df.isnull().sum()) # Count of NA values in each column
+print(df["EmpId"].head())
 df2 = pd.read_csv("Titanic-Dataset.csv")
-print(df2.isnull().sum())
+print(df2.isnull().sum()) 
 print(df2["Age"].head())
 print(df2["Age"].mean())
 
 # Drop NA
-# df2.dropna(axis=1, inplace=True)
-# print("\nDataFrame after dropping columns with NA values:")
-# print(df2.isnull().sum())
+df2.dropna(axis=1, inplace=True) # axis=0 for rows, axis=1 for columns
+print("\nDataFrame after dropping columns with NA values:")
+print(df2.isnull().sum())
 
 # Fill NA
-# df2["Age"].fillna(df2["Age"].mean(), inplace=True)
-# print("\nDataFrame after filling NA values with column means:")
-# print(df2.isnull().sum()) 
+df2["Age"].fillna(df2["Age"].mean(), inplace=True)  # Fill NA with mean of the column by mean
+print("\nDataFrame after filling NA values with column means:")
+print(df2.isnull().sum()) 
+print(df2["Age"].mean())
 
-# print(df2["Age"].mean())
-
-# Interpolate Method
-df2["Age"].interpolate(method="linear",axis=1 ,inplace=True) # Linear 2 Polynomial
+# Interpolate Method(need to learn  # Linear 2 Polynomial)
+df2["Age"].interpolate(method="linear",axis=1 ,inplace=True) # Fill NA with mean of the column by interpolate
 print("\nDataFrame after interpolating NA values:")
 print(df2.isnull().sum())
 print(df2["Age"].head())
 
-  
+# Fill NA with polynomial
+df2["Age"].interpolate(method="polynomial", order=2, inplace=True) # Fill NA with mean of the column by polynomial
+print("\nDataFrame after polynomial interpolating NA values:")
+print(df2.isnull().sum())
